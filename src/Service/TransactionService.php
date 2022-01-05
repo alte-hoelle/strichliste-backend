@@ -156,7 +156,7 @@ class TransactionService {
     function revertTransaction(int $transactionId): Transaction {
         return $this->entityManager->transactional(function () use ($transactionId) {
 
-            $transaction = $this->entityManager->getRepository(Transaction::class)->find($transactionId, LockMode::PESSIMISTIC_WRITE);
+            $transaction = $this->entityManager->getRepository(Transaction::class)->find($transactionId);
             if (!$transaction) {
                 throw new TransactionNotFoundException($transactionId);
             }
